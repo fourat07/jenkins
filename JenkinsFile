@@ -12,7 +12,7 @@ pipeline {
     stages {
         stage('GIT') {
             steps {
-                git branch: 'master', url: 'https://github.com/fourat07/jenkins.git'
+                git branch: 'main', url: 'https://github.com/fourat07/jenkins.git'
             }
         }
 
