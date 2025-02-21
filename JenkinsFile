@@ -1,20 +1,28 @@
 pipeline {
     agent any
 
+    tools {
+        maven "M2_HOME"
+    }
+
+    environment {
+        SONAR_TOKEN = 'squ_39631ea55f4ea8cf122e18314c0b01edf1b491a8'  // Remplace par ton token
+    }
+
     stages {
-        stage('Git') {
+        stage('GIT') {
             steps {
-                git branch : 'master ',
-                url : 'https://github.com/fourat07/jenkins.git'
+                git branch: 'main', url: 'https://github.com/fourat07/jenkins.git/'
             }
         }
-         stage('Compile') {
+
+        stage('COMPILE') {
             steps {
                 sh 'mvn clean compile'
             }
         }
 
- stage('MVN Sonarqube') {
+        stage('MVN Sonarqube') {
             steps {
                 sh 'mvn sonar:sonar -Dsonar.login=squ_39631ea55f4ea8cf122e18314c0b01edf1b491a8 -Dmaven.test.skip=true'
 
