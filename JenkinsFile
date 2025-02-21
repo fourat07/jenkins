@@ -13,5 +13,12 @@ pipeline {
                 sh 'mvn clean compile'
             }
         }
+
+ stage('MVN Sonarqube') {
+            steps {
+                sh 'mvn sonar:sonar -Dsonar.login=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 -Dmaven.test.skip=true'
+
+            }
+        }
     }
 }
