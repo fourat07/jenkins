@@ -1,28 +1,31 @@
 pipeline {
     agent any
 
-    tools{
-        maven "M2_HOME"
-        }
-
-
     stages {
-        stage('GIT') {
+        stage('Git') {
             steps {
-                git branch: 'master', url: 'https://github.com/fourat07/jenkins.git'
+                git branch: 'master',
+                    url: 'https://github.com/hwafa/timesheetproject.git'
             }
         }
 
-        stage('COMPILE') {
+        stage('Compile') {
             steps {
                 sh 'mvn clean compile'
             }
         }
-
+/*
         stage('MVN Sonarqube') {
             steps {
-                sh 'mvn sonar:sonar -Dsonar.login=squ_98a7cf30d55ca1cd83656c98d4ba58dd37ae75a9 -Dmaven.test.skip=true'
-
+                sh '''mvn sonar:sonar \
+                    -Dsonar.login=squ_745a76d8d40e899942e83b4416d6be8a5b911c47 \
+                    -Dmaven.test.skip=true'''
+            }
+        }
+        */
+           stage('MVN Nexus') {
+            steps {
+                sh 'mvn deploy -Dmaven.test.skip=true'
             }
         }
     }
