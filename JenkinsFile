@@ -3,16 +3,13 @@ pipeline {
 
     tools{
         maven "M2_HOME"
-}
+        }
 
-    environment {
-        SONAR_TOKEN = 'ton_token_sonarqube'  // Remplace par ton token
-    }
 
     stages {
         stage('GIT') {
             steps {
-                git branch: 'main', url: 'https://github.com/fourat07/jenkins.git'
+                git branch: 'master', url: 'https://github.com/fourat07/jenkins.git'
             }
         }
 
@@ -24,7 +21,7 @@ pipeline {
 
         stage('MVN Sonarqube') {
             steps {
-                sh 'mvn sonar:sonar -Dsonar.login=squ_39631ea55f4ea8cf122e18314c0b01edf1b491a8 -Dmaven.test.skip=true'
+                sh 'mvn sonar:sonar -Dsonar.login=squ_98a7cf30d55ca1cd83656c98d4ba58dd37ae75a9 -Dmaven.test.skip=true'
 
             }
         }
