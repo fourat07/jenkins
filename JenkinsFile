@@ -8,13 +8,13 @@ pipeline {
                     url: 'https://github.com/hwafa/timesheetproject.git'
             }
         }
-
+/*
         stage('Compile') {
             steps {
                 sh 'mvn clean compile'
             }
         }
-/*
+
         stage('MVN Sonarqube') {
             steps {
                 sh '''mvn sonar:sonar \
